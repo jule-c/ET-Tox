@@ -1,0 +1,94 @@
+#LEARNING
+batch_size: 64
+inference_batch_size: 64
+lr: 5.0e-4
+lr_metric: train_loss
+lr_factor: 0.5
+lr_min: 1.e-7
+lr_patience: 0
+lr_warmup_steps: 0
+early_stopping_patience: 30
+num_epochs: 1000
+weight_decay: 0.00001
+activation: silu
+atom_filter: -1
+attn_activation: silu
+derivative: true
+energy_weight: 1.0
+force_weight: 10.0
+ema_alpha_dy: 1.0
+ema_alpha_y: 1.0
+ngpus: -1
+test_loss: MAE
+
+#MD SIM
+self_supervised_pretraining: false
+
+#CUTOFF
+cutoff_lower: 0.0
+cutoff_upper: 6.0
+lr_cutoff: 100
+
+#DATA
+dataset: QM7X_EFC
+dataset_root: /workspace7/torchmd-charges
+dataset_arg: null
+seed: 42
+test_size: 100
+train_size: 5000
+val_size: 100
+
+#LONG-RANGE EMBEDDINGS
+use_total_charge: true
+use_electronic: false
+use_dftb: false
+
+#MBD ENERGIES
+predict_mbd_energy: false
+use_mbd_energy: false
+standardize_mbd: false
+
+#PARTIAL CHARGES
+use_charge_equilibration: true
+use_partial_charge_mlp: false
+use_spherical_network: false
+predict_partial_charges: true
+
+#ENERGY CORRECTIONS
+use_zbl_repulsion: false
+use_electrostatics: false
+use_d4_dispersion: false
+compute_d4_atomic: false
+
+use_allegro: false
+tensorproduct_out: false
+
+#NORMALIZATION
+standardize: false
+prior_model: Atomref
+
+#ATTENTION + (DISTANCE) EMBEDDING
+model: equivariant-transformer
+embedding_dimension: 128
+num_heads: 8
+num_layers: 6
+num_rbf: 64
+trainable_rbf: true
+rbf_type: expnorm
+distance_influence: both
+max_num_neighbors: 32
+max_z: 100
+neighbor_embedding: true
+
+#GENERAL
+num_nodes: 1
+num_workers: 8
+output_model: Scalar
+precision: 32
+redirect: false
+reduce_op: add
+save_interval: 10
+test_interval: 10
+splits: null
+distributed_backend: ddp
+

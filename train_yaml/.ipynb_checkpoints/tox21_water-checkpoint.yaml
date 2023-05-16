@@ -1,0 +1,113 @@
+hyperparameter_tuning: false
+
+activation: silu
+atom_filter: -1
+attn_activation: silu
+batch_size: 16
+inference_batch_size: 16
+test_size: 0.1
+train_size: 0.8
+val_size: 0.1
+seed: 1000
+ngpus: -1
+
+wandb: false
+
+model: equivariant-transformer
+#change when using ET
+
+diffusion_pretraining: false
+emgp_pretraining: false
+position_noise_scale: 0.
+denoising_weight: 0.
+denoising: false
+
+linear_probing: false
+finetune_output: false
+load_pretrained: false
+pretrained_model: /workspace7/torchmd-denoise/test/epoch=99-val_loss=0.0002-test_loss=0.0099.ckpt
+
+toxicity_prediction: true
+toxicity_weight: 1.0
+energy_tox_multi_task: false
+use_energy_feature: false
+use_smiles: false
+
+use_total_charge: false
+
+energy_weight: 0.0
+
+layernorm_on_vec: whitened
+
+force_weight: 0.0
+
+output_model: Toxicity
+#only needed for equivariant-transformer - change to Scalar + derivative true if training with conserved energies + forces; Forces learns forces directly
+
+prior_model: null
+#not needed in MACE
+
+derivative: false
+#not needed in MACE (currently only energy + force output in MACE)
+max_z: 100 
+#change when using ET to highest nuclear charge (MACE: number of different nuclear charges)
+num_atom_types: 22
+
+cutoff_lower: 0.0
+cutoff_upper: 5.0
+
+max_len_smiles: 342
+output_channels_toxicity: 12
+atom_types: [1,5,6,7,8,9,11,14,15,16,17,20,22,23,24,26,27,28,30,32,33,34,35,40,42,46,48,49,50,51,53,66,70,78,79,80,81,83]
+num_atom_types: 38
+dataset: Tox21_Water
+dataset_arg: {num_conformers: 1, conformer: best, dataset: tox21_water}
+dataset_root: /workspace7/Tox21_Water
+#change for downstream pediction
+
+#TensorNet
+num_linears_tensor: 1
+num_linears_scalar: 2
+
+#ET
+num_heads: 8
+
+num_layers: 8
+embedding_dimension: 128
+
+lr: 5.e-4
+lr_metric: val_loss
+lr_factor: 0.75
+lr_min: 1.e-8
+lr_patience: 5
+early_stopping_patience: 25
+lr_warmup_steps: 0
+lr_schedule: reduce_on_plateau
+lr_cosine_length: 0
+num_rbf: 32
+trainable_rbf: true
+
+standardize: false
+
+test_interval: 10
+
+distance_influence: both
+ema_alpha_dy: 1.0
+ema_alpha_y: 1.0
+
+max_num_neighbors: 200
+neighbor_embedding: true
+
+num_epochs: 3000
+
+num_nodes: 1
+num_workers: 12
+precision: 32
+rbf_type: expnorm
+redirect: false
+reduce_op: add
+save_interval: 10
+
+splits: null
+weight_decay: 1.e-5
+

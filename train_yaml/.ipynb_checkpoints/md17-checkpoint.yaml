@@ -1,0 +1,100 @@
+activation: silu
+atom_filter: -1
+attn_activation: silu
+batch_size: 8
+inference_batch_size: 8
+test_size: 0.1
+train_size: 0.8
+val_size: 0.1
+seed: 1
+ngpus: [2]
+
+wandb: true
+
+model: equivariant-transformer
+#change when using ET
+
+diffusion_pretraining: false
+emgp_pretraining: false
+position_noise_scale: 0.
+denoising_weight: 0.
+denoising: false
+
+finetune_output: false
+load_pretrained: false
+pretrained_model: /workspace7/torchmd-denoise/pcqm4mv2_denoise_grad/epoch=209-val_loss=0.1477-test_loss=0.2967.ckpt
+
+toxicity_prediction: false
+toxicity_weight: 0.0
+
+output_model: Scalar
+
+layernorm_on_vec: null
+
+#only needed for equivariant-transformer - change to Scalar + derivative true if training with conserved energies + forces; Forces learns forces directly
+
+prior_model: null
+#not needed in MACE
+
+derivative: true
+#not needed in MACE (currently only energy + force output in MACE)
+max_z: 100
+num_atom_types: 6
+
+cutoff_lower: 0.0
+cutoff_upper: 5.0
+
+dataset: MD17
+dataset_arg: {name: aspirin CCSD, train: true}
+dataset_root: /workspace7/torchmd-denoise
+#change for downstream pediction
+
+#TensorNet
+num_linears_tensor: 1
+num_linears_scalar: 2
+#ET
+num_heads: 8
+
+#General
+num_layers: 3
+embedding_dimension: 64
+energy_weight: 0.5
+force_weight: 0.5
+lr: 1.e-3
+lr_metric: val_loss
+lr_factor: 0.5
+lr_min: 1.e-8
+lr_patience: 100
+lr_warmup_steps: 1000
+lr_schedule: reduce_on_plateau
+lr_cosine_length: 0
+num_rbf: 32
+trainable_rbf: false
+embedding_dimension: 64
+
+standardize: true
+
+test_interval: 10
+
+distance_influence: both
+ema_alpha_dy: 1.0
+ema_alpha_y: 0.05
+
+early_stopping_patience: 30
+
+max_num_neighbors: 100
+neighbor_embedding: true
+
+num_epochs: 3000
+
+num_nodes: 1
+num_workers: 12
+precision: 32
+rbf_type: expnorm
+redirect: false
+reduce_op: add
+save_interval: 10
+
+splits: null
+weight_decay: 0.
+

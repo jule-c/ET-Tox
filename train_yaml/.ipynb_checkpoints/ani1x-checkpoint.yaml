@@ -1,0 +1,90 @@
+activation: silu
+atom_filter: -1
+attn_activation: silu
+batch_size: 128
+inference_batch_size: 128
+test_size: 0.1
+train_size: 0.8
+val_size: 0.1
+
+model: equivariant-transformer
+#change when using ET
+
+diffusion_pretraining: false
+emgp_pretraining: false
+output_model_noise: null
+layernorm_on_vec: whitened
+position_noise_scale: 0.
+denoising_weight: 0.
+denoising: false
+
+finetune_output: false
+load_pretrained: true
+pretrained_model: /workspace7/torchmd-denoise/pcqm4mv2_denoise_grad/epoch=119-val_loss=0.1571-test_loss=0.3065.ckpt
+
+output_model: Scalar
+
+#only needed for equivariant-transformer - change to Scalar + derivative true if training with conserved energies + forces; Forces learns forces directly
+
+prior_model: null
+#not needed in MACE
+
+derivative: true
+#not needed in MACE (currently only energy + force output in MACE)
+max_z: 36 #10 in ANI1X
+num_atom_types: 22 #5 in ANI1X
+
+cutoff_lower: 0.0
+cutoff_upper: 6.0
+
+dataset: ANI1X
+dataset_arg: {}
+dataset_root: /workspace7/ANI1X
+
+#change for downstream pediction
+
+ngpus: -1
+
+lr: 1.e-4
+lr_metric: val_loss
+lr_factor: 0.5
+lr_min: 1.e-8
+lr_patience: 1
+lr_warmup_steps: 0
+lr_schedule: reduce_on_plateau
+lr_cosine_length: 0
+num_heads: 8
+num_layers: 6
+num_rbf: 64
+trainable_rbf: true
+embedding_dimension: 128
+energy_weight: 1.0
+force_weight: 1.0
+
+standardize: false
+
+seed: 42
+test_interval: 10
+
+distance_influence: both
+ema_alpha_dy: 1.0
+ema_alpha_y: 1.0
+
+early_stopping_patience: 30
+
+max_num_neighbors: 100
+neighbor_embedding: true
+
+num_epochs: 3000
+
+num_nodes: 1
+num_workers: 12
+precision: 32
+rbf_type: expnorm
+redirect: false
+reduce_op: add
+save_interval: 10
+
+splits: null
+weight_decay: 0.0
+

@@ -1,0 +1,97 @@
+activation: silu
+atom_filter: -1
+attn_activation: silu
+batch_size: 16
+inference_batch_size: 16
+test_size: 0.1
+train_size: 0.8
+val_size: 0.1
+
+cutoff_lower: 0.0
+cutoff_upper: 7.0
+
+model: equivariant-transformer
+#change when using ET
+
+diffusion_pretraining: false
+emgp_pretraining: false
+output_model_noise: null
+position_noise_scale: 0.
+denoising_weight: 0.
+denoising: false
+
+finetune_output: false
+load_pretrained: false
+pretrained_model: null
+
+toxicity_prediction: false
+toxicity_weight: 1.0
+
+layernorm_on_vec: whitened
+
+predict_hirshfeld: true
+hirshfeld_weight: 1.0
+energy_weight: 1.0
+force_weight: 1.0
+
+output_model: Scalar
+derivative: true
+#set to true, if output_model Scalar and you want diffusion pre-training with backprop.
+
+#only needed for equivariant-transformer - change to Scalar + derivative true if training with conserved energies + forces; Forces learns forces directly
+prior_model: null 
+#not needed in MACE
+#not needed in MACE (currently only energy + force output in MACE)
+max_z: 18
+num_atom_types: 7
+#change when using ET to highest nuclear charge (MACE: number of different nuclear charges)
+
+dataset: AQM
+dataset_arg: {}
+dataset_root: /workspace7/AQM
+
+ngpus: [1, 2]
+
+standardize: false
+
+embedding_dimension: 128
+
+seed: 42
+test_interval: 10
+
+num_heads: 8
+num_layers: 6
+num_rbf: 64
+trainable_rbf: false
+
+distance_influence: both
+ema_alpha_dy: 1.0
+ema_alpha_y: 1.0
+
+lr: 1.e-4
+lr_metric: val_loss
+lr_factor: 0.5
+lr_min: 1.e-8
+lr_patience: 5
+lr_warmup_steps: 1000
+lr_schedule: reduce_on_plateau
+lr_cosine_length: 0
+
+early_stopping_patience: 300
+
+max_num_neighbors: 100
+neighbor_embedding: true
+
+num_epochs: 3000
+
+num_nodes: 1
+num_workers: 12
+precision: 32
+rbf_type: expnorm
+redirect: false
+reduce_op: add
+save_interval: 10
+
+splits: null
+weight_decay: 0.0
+

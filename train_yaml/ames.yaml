@@ -1,0 +1,89 @@
+activation: silu
+attn_activation: silu
+batch_size: 32
+inference_batch_size: 32
+test_size: 0.1
+train_size: 0.8
+val_size: 0.1
+seed: 250
+ngpus: 1
+
+wandb: false
+
+test_run: true
+test_checkpoint: /home/julian/ET-Tox/ames_test/ames.ckpt
+
+train_type: classification
+save_top_k: 1 #save the best model only
+
+model: equivariant-transformer
+#change when using ET
+
+linear_probing: false
+toxicity_weight: 1.0
+energy_tox_multi_task: false
+use_energy_feature: false
+use_smiles: false
+use_smiles_only: false
+use_total_charge: false
+energy_weight: 0.
+layernorm_on_vec: whitened
+
+output_model: Toxicity
+
+derivative: false
+max_z: 100 
+
+cutoff_lower: 0.0
+cutoff_upper: 8.0
+
+output_channels_toxicity: 1
+max_len_smiles: 175
+num_atom_types: 10
+dataset: TDCTox
+dataset_arg: {num_conformers: 1, conformer: best, dataset: ames}
+dataset_root: /home/julian/ET-Tox/data/TDCTox
+dataset_split: scaffold
+
+#ET
+num_heads: 8
+
+num_layers: 5
+embedding_dimension: 128
+
+lr: 5.e-4
+lr_metric: val_loss
+lr_factor: 0.75
+lr_min: 1.e-8
+lr_patience: 5
+early_stopping_patience: 15
+lr_warmup_steps: 500
+lr_schedule: reduce_on_plateau
+lr_cosine_length: 30
+num_rbf: 64
+trainable_rbf: true
+
+standardize: false
+
+test_interval: 10
+
+distance_influence: both
+ema_alpha_dy: 1.0
+ema_alpha_y: 1.0
+
+max_num_neighbors: 200
+neighbor_embedding: true
+
+num_epochs: 3000
+
+num_nodes: 1
+num_workers: 12
+precision: 32
+rbf_type: expnorm
+redirect: false
+reduce_op: add
+save_interval: 1
+
+splits: null
+weight_decay: 0.
+
