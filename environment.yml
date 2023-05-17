@@ -1,4 +1,4 @@
-name: tox
+name: et_tox
 channels:
   - conda-forge
 dependencies:

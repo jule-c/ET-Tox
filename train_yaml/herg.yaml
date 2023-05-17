@@ -1,5 +1,12 @@
 hyperparameter_tuning: false
 
+test_run: false
+test_checkpoint: ./models/herg.ckpt
+
+train_type: classification
+save_top_k: 1 #save the best model only
+
+
 activation: silu
 atom_filter: -1
 attn_activation: silu
@@ -25,7 +32,7 @@ denoising: false
 linear_probing: false
 finetune_output: false
 load_pretrained: false
-pretrained_model: /workspace7/torchmd-denoise/pcqm_denoise/epoch=119-val_loss=0.1328-test_loss=0.2792.ckpt
+pretrained_model: null
 
 toxicity_prediction: true
 toxicity_weight: 1.0
@@ -60,8 +67,8 @@ cutoff_upper: 8.0
 output_channels_toxicity: 1
 max_len_smiles: 188
 dataset: TDCTox
-dataset_arg: {num_conformers: 1, conformer: random, dataset: herg}
-dataset_root: /workspace7/TDCTox
+dataset_arg: {num_conformers: 1, conformer: best, dataset: herg}
+dataset_root: ./data/TDCTox
 #change for downstream pediction
 
 #TensorNet

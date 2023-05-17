@@ -1,5 +1,13 @@
 hyperparameter_tuning: false
 
+
+test_run: false
+test_checkpoint: ./models/ames.ckpt
+
+train_type: regression
+save_top_k: 1 #save the best model only
+
+
 activation: silu
 atom_filter: -1
 attn_activation: silu
@@ -25,7 +33,7 @@ denoising: false
 linear_probing: false
 finetune_output: false
 load_pretrained: false
-pretrained_model: /workspace7/torchmd-denoise/test/epoch=99-val_loss=0.0002-test_loss=0.0099.ckpt
+pretrained_model: null
 
 toxicity_prediction: true
 toxicity_weight: 1.0
@@ -61,7 +69,7 @@ output_channels_toxicity: 1
 max_len_smiles: 174
 dataset: TDCTox
 dataset_arg: {num_conformers: 1, conformer: best, dataset: ld50}
-dataset_root: /workspace7/TDCTox
+dataset_root: ./data/TDCTox
 #change for downstream pediction
 
 #TensorNet

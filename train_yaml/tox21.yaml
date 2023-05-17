@@ -1,5 +1,11 @@
-
 hyperparameter_tuning: false
+
+test_run: false
+test_checkpoint: ./models/tox21.ckpt
+
+train_type: classification
+save_top_k: 1 #save the best model only
+
 
 activation: silu
 atom_filter: -1
@@ -37,7 +43,7 @@ output_model_charges: null
 linear_probing: false
 finetune_output: false
 load_pretrained: false
-pretrained_model: /workspace7/torchmd-denoise/pcqm_denoise/epoch=119-val_loss=0.1328-test_loss=0.2792.ckpt
+pretrained_model: null
 
 toxicity_prediction: true
 energy_tox_multi_task: false
@@ -74,7 +80,7 @@ atom_types: [1,5,6,7,8,9,11,14,15,16,17,20,22,23,24,26,27,28,30,32,33,34,35,40,4
 num_atom_types: 38
 dataset: MoleculeNet
 dataset_arg: {num_conformers: 1, conformer: best, data_version: geom, dataset: tox21}
-dataset_root: /workspace7/GEOM/molecule_net
+dataset_root: ./data/MoleculeNet
 #change for downstream pediction
 
 #TensorNet

@@ -10,8 +10,8 @@ ngpus: 1
 
 wandb: false
 
-test_run: true
-test_checkpoint: /home/julian/ET-Tox/ames_test/ames.ckpt
+test_run: false
+test_checkpoint: ./models/ames.ckpt
 
 train_type: classification
 save_top_k: 1 #save the best model only
@@ -42,7 +42,7 @@ max_len_smiles: 175
 num_atom_types: 10
 dataset: TDCTox
 dataset_arg: {num_conformers: 1, conformer: best, dataset: ames}
-dataset_root: /home/julian/ET-Tox/data/TDCTox
+dataset_root: ./data/TDCTox
 dataset_split: scaffold
 
 #ET

@@ -1,5 +1,12 @@
 hyperparameter_tuning: false
 
+test_run: false
+test_checkpoint: ./models/sider.ckpt
+
+train_type: classification
+save_top_k: 1 #save the best model only
+
+
 activation: silu
 atom_filter: -1
 attn_activation: silu
@@ -25,7 +32,7 @@ denoising: false
 linear_probing: false
 finetune_output: false
 load_pretrained: false
-pretrained_model: /workspace7/torchmd-denoise/test/epoch=99-val_loss=0.0002-test_loss=0.0099.ckpt
+pretrained_model: null
 
 toxicity_prediction: true
 toxicity_weight: 1.0
@@ -60,7 +67,7 @@ max_len_smiles: 413
 output_channels_toxicity: 27
 dataset: MoleculeNet
 dataset_arg: {num_conformers: 1, conformer: best, data_version: geom, dataset: sider}
-dataset_root: /workspace7/GEOM/molecule_net
+dataset_root: ./data/MoleculeNet
 #change for downstream pediction
 
 #TensorNet
