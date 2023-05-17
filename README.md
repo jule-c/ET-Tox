@@ -61,5 +61,7 @@ python train.py --conf ./train_yaml/"${name}".yaml --log-dir output_dir"${name}"
 ```
 
 ## Pretrained models
-Pretrained models are available at https://github.com/ET-Tox/models
+Pretrained models are available at https://zenodo.org/record/7942946
 
+## Usage
+Unpack models into ./models and either test the models in a jupyter notebook environment by using test_models.ipynb or give the --test-run flag and specify --test-checkpoint model_path
