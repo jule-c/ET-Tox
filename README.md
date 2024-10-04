@@ -65,3 +65,7 @@ Pretrained models are available at https://zenodo.org/record/7942946
 
 ## Usage
 Unpack models into ./models and either test the models in a jupyter notebook environment by using test_models.ipynb or give the --test-run flag and specify --test-checkpoint model_path
+
+
+## Acknowledgement
+This study was partially funded by the European Union’s Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie Actions grant agreement “Advanced machine learning for Innovative Drug Discovery (AIDD)” No. 956832.
